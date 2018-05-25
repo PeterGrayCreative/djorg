@@ -2,9 +2,29 @@
 
 {% if bookmarks %}
 
-  <ul>
+<ul>
   {% for bookmark in bookmarks %}
-    <li><a href="{{ bookmark.url }}">{{ bookmark.name }}</a></li>
+  <li>
+    <a href="{{ bookmark.url }}">{{ bookmark.name }}</a>
+  </li>
   {% endfor %}
-  </ul>
+</ul>
 {% endif %}
+
+<h1>Personal Bookmarks</h1>
+
+{% if personal_bookmarks %}
+
+<ul>
+  {% for bookmark in personal_bookmarks %}
+  <li>
+    <a href="{{ bookmark.url }}">{{ bookmark.name }}</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+<form method="POST" class="add-bookmark">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button type="submit" class="save btn btn-default">Save</button>
+</form>
